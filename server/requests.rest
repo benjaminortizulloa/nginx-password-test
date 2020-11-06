@@ -1,0 +1,27 @@
+POST http://localhost:3000/users
+content-type: application/json
+
+{
+    "name": "my-user-name",
+    "password": "password"
+}
+
+###
+
+GET http://localhost:3000/users
+
+###
+
+GET http://localhost:3000/jwt
+content-type: application/json
+
+{
+    "name": "my-user-name",
+    "password": "password"
+}
+
+###
+
+GET http://localhost:3000/auth
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoibXktdXNlci1uYW1lIiwiaWF0IjoxNjA0NjUwODY3fQ.sFcxHUQ_vM79K7lEuttR0EBK-6pf_Yx2QsW9XtV_TXA
+
