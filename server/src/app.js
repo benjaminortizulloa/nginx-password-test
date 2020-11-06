@@ -45,14 +45,16 @@ app.get('/users', (req, res) => {
 // Authentication: Makeshift JWT service, use AWS cognito or similar
 
 
-app.get('/jwt', async (req, res) => {
+app.post('/jwt', async (req, res) => {
     console.log('jwt')
-    console.log('name', req.param('name'))
-    console.log('password', req.param('password'))
-    let user = users.find(user => user.name == req.param('name'))
+    console.log('body', req.body)
+    let nm = req.body.name
+    let pw = Buffer.from(req.body.password, 'base64').toString();
+
+    let user = users.find(user => user.name == nm)
 
     try {
-        if (await bcrypt.compare(req.param('password'), user.password)) {
+        if (await bcrypt.compare(pw, user.password)) {
 
             const token = jwt.sign({
                 user: user.name

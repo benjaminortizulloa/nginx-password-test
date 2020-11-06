@@ -22,7 +22,10 @@ content-type: application/json
 
 ###
 
-GET http://localhost:8080/credentials/?name=ben&password=password
+GET http://localhost:3000/jwt
+content-type: text/plain
+
+
 
 ###
 
