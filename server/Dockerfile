@@ -5,6 +5,7 @@ COPY . /src
 WORKDIR /src
 
 RUN npm install --production
+RUN npm i bcrypt
 
 EXPOSE 3000
 

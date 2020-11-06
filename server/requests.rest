@@ -22,6 +22,16 @@ content-type: application/json
 
 ###
 
+GET http://localhost:8080/credentials/?name=ben&password=password
+
+###
+
 GET http://localhost:3000/auth
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoibXktdXNlci1uYW1lIiwiaWF0IjoxNjA0NjUwODY3fQ.sFcxHUQ_vM79K7lEuttR0EBK-6pf_Yx2QsW9XtV_TXA
+
+
+###
+
+GET  http://localhost:8080/private
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoibXktdXNlci1uYW1lIiwiaWF0IjoxNjA0NjUwODY3fQ.sFcxHUQ_vM79K7lEuttR0EBK-6pf_Yx2QsW9XtV_TXA
 

@@ -1,20 +1,21 @@
-const dotenv = require('dotenv')
+const dotenv = require('dotenv');
 const express = require('express');
+var cors = require('cors');
 const jwt = require('jsonwebtoken');
 const app = express();
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
 
 dotenv.config()
 app.use(express.json())
+app.use(cors())
 
-app.all("*", function (req, resp, next) {
-    console.log('req', req); // do anything you want here
-    next();
-});
 
 // USER STORE - use DB or OAuth
 
-let users = [];
+let users = [{
+    "name": "ben",
+    "password": "$2b$10$DKz5KDkg/VVUMkP4F21LJuxySV2dJhYEjOqY1GsMHpMY6qFIfnHlu"
+}];
 
 app.post('/users', async (req, res) => {
     console.log('users', req.body)
@@ -43,10 +44,6 @@ app.get('/users', (req, res) => {
 
 // Authentication: Makeshift JWT service, use AWS cognito or similar
 
-app.get('/test/:token', (req, res) => {
-    console.log('params', req.params)
-    res.send(req.params)
-})
 
 app.get('/jwt', async (req, res) => {
     console.log('jwt')
