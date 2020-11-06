@@ -78,10 +78,15 @@ app.get("/auth", (req, res) => {
     const token = req.get('authorization');
     const decodedToken = jwt.decode(token) || {};
 
-    res.json({
-        id: process.env.APP_ID,
-        jwt: decodedToken
-    })
+    if(Object.keys(decodedToken).length){
+
+        res.json({
+            id: process.env.APP_ID,
+            jwt: decodedToken
+        })
+    } else {
+        res.status(401).send()
+    }
 })
 
 
