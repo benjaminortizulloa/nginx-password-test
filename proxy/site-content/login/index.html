@@ -103,19 +103,35 @@
     btn.onclick = function (event) {
         let psw = document.getElementById("psw").value
         let uname = document.getElementById("uname").value
+        testAction()
 
         userAction(psw, uname)
     }
 
+    const testAction = async () => {
+        const response = await fetch('/users', {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+
+        console.log('test action')
+        response.json()
+    }
+
     const userAction = async (psw, uname) => {
-        const response = await fetch(`/jwt`, {
+        const response = await fetch(`/api/jwt`, {
             method: 'POST',
-            body: JSON.stringify({name: uname, password: window.btoa(psw)}),
+            body: JSON.stringify({
+                name: uname,
+                password: window.btoa(psw)
+            }),
             headers: {
                 'Content-Type': 'application/json'
             }
         });
-        const myJson = await response.json().then(function(d){
+        const myJson = await response.json().then(function (d) {
             console.log('myjson', d)
             sendToken(d.token)
         })
@@ -125,7 +141,7 @@
     //token should be taken from useraction
     const sendToken = async (token) => {
         console.log('sendtoken', token)
-        if(token){
+        if (token) {
             fetch(`/private`, {
                     method: 'GET',
                     headers: {

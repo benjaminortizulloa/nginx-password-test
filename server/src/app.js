@@ -9,6 +9,14 @@ dotenv.config()
 app.use(express.json())
 app.use(cors())
 
+let logger = (req, res, next) => {
+    var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+    console.log('fullurl', fullUrl)
+    next()
+
+}
+
+app.use(logger);
 
 // USER STORE - use DB or OAuth
 
@@ -80,7 +88,7 @@ app.get("/auth", (req, res) => {
     const token = req.get('authorization');
     const decodedToken = jwt.decode(token) || {};
 
-    if(Object.keys(decodedToken).length){
+    if (Object.keys(decodedToken).length) {
 
         res.json({
             id: process.env.APP_ID,
@@ -90,8 +98,6 @@ app.get("/auth", (req, res) => {
         res.status(401).send()
     }
 })
-
-
 
 
 module.exports = app;
