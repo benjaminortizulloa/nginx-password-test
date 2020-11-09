@@ -10,6 +10,8 @@ services:
     build: "./frontend"
     ports:
       - "8081:8080"
+    volumes:
+      - vuedist:/app/dist
   nginx:
     image: nginx:latest
     ports:
@@ -17,5 +19,9 @@ services:
     volumes:
       - ./proxy/default.conf:/etc/nginx/conf.d/default.conf
       - ./proxy/site-content:/usr/share/nginx/html
+      - vuedist:/usr/share/vuedist/html/vue
     depends_on:
       - jwt
+      - vue
+volumes:
+  vuedist:
