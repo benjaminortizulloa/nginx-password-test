@@ -6,6 +6,10 @@ services:
       - APP_ID="sessionid"
     ports:
       - "3000:3000"
+  vue:
+    build: "./frontend"
+    ports:
+      - "8081:8080"
   nginx:
     image: nginx:latest
     ports:
